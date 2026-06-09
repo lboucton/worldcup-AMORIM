@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amorim Top Series — World Cup 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#f0f2f5;font-family:'Barlow',sans-serif;min-height:100vh}
+.app{max-width:680px;margin:0 auto}
+
+/* LANG BAR */
+.lang-bar{background:#0D1117;padding:6px 16px;display:flex;justify-content:flex-end;gap:6px}
+.lang-btn{padding:3px 10px;border:1px solid rgba(255,255,255,.15);border-radius:20px;background:transparent;color:rgba(255,255,255,.4);font-size:11px;font-weight:600;cursor:pointer;font-family:'Barlow',sans-serif;transition:all .2s}
+.lang-btn.active{border-color:#C9A227;color:#C9A227;background:rgba(201,162,39,.1)}
+
+/* HEADER */
+.header{background:#0D1117;padding:24px 20px 18px;text-align:center;position:relative;overflow:hidden}
+.header::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 20px,rgba(201,162,39,.03) 20px,rgba(201,162,39,.03) 40px)}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:38px;letter-spacing:3px;color:#C9A227;position:relative}
+.logo-sub{font-size:10px;letter-spacing:6px;color:rgba(255,255,255,.4);text-transform:uppercase;margin-top:2px;position:relative}
+.logo-event{font-size:13px;color:rgba(255,255,255,.6);margin-top:8px;position:relative}
+.ball-l,.ball-r{position:absolute;top:50%;transform:translateY(-50%);font-size:44px;opacity:.12}
+.ball-l{left:16px}.ball-r{right:16px}
+
+/* NAV */
+.nav{display:flex;background:#151b27;border-bottom:2px solid #C9A227;overflow-x:auto;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav button{flex:none;padding:13px 16px;border:none;background:transparent;color:rgba(255,255,255,.45);font-family:'Barlow',sans-serif;font-size:11px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;white-space:nowrap;transition:all .2s}
+.nav button:hover{color:rgba(255,255,255,.8);background:rgba(201,162,39,.06)}
+.nav button.active{color:#C9A227;border-bottom-color:#C9A227;background:rgba(201,162,39,.1)}
+
+/* CONTENT */
+.content{padding:16px;min-height:500px}
+.tab{display:none}.tab.active{display:block}
+
+/* SHARED */
+.section-title{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px;color:#222;margin:16px 0 10px;display:flex;align-items:center;gap:8px}
+.card{background:#fff;border-radius:10px;border:1px solid rgba(0,0,0,.08);padding:14px;margin-bottom:8px}
+.muted{color:#999;font-size:12px}
+
+/* INTRO */
+.intro-hero{background:#0D1117;border-radius:12px;padding:28px 20px;text-align:center;margin-bottom:14px;position:relative;overflow:hidden}
+.intro-hero::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 20px,rgba(201,162,39,.03) 20px,rgba(201,162,39,.03) 40px)}
+.intro-hero h1{font-family:'Bebas Neue',sans-serif;font-size:34px;letter-spacing:3px;color:#C9A227;position:relative}
+.intro-hero p{color:rgba(255,255,255,.55);font-size:13px;margin-top:6px;position:relative;line-height:1.5}
+.intro-dates{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+.date-card{background:#fff;border-radius:10px;border:1px solid rgba(0,0,0,.08);padding:10px;text-align:center}
+.date-val{font-family:'Bebas Neue',sans-serif;font-size:20px;color:#C9A227}
+.date-label{font-size:10px;color:#999;text-transform:uppercase;letter-spacing:.5px;margin-top:2px}
+.rules-block{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:10px;overflow:hidden;margin-bottom:10px}
+.rules-header{background:#f8f8f8;padding:10px 14px;border-bottom:1px solid rgba(0,0,0,.06);display:flex;align-items:center;gap:8px}
+.rules-flag{font-size:20px}
+.rules-lang{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:1px;color:#555}
+.rules-body{padding:14px}
+.rule-row{display:flex;gap:10px;margin-bottom:12px}
+.rule-row:last-child{margin-bottom:0}
+.rule-icon{width:28px;height:28px;border-radius:6px;background:rgba(201,162,39,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px}
+.rule-title{font-weight:600;font-size:13px;color:#222;margin-bottom:2px}
+.rule-desc{font-size:12px;color:#666;line-height:1.5}
+.mult-table{width:100%;border-collapse:collapse;margin-top:8px;font-size:12px;border-radius:6px;overflow:hidden}
+.mult-table th{background:#f5f5f5;padding:5px 8px;text-align:center;font-weight:600;color:#666;font-size:10px;text-transform:uppercase}
+.mult-table td{padding:5px 8px;text-align:center;border-top:1px solid #f0f0f0;color:#333;font-weight:500}
+
+/* DASHBOARD */
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+.stat{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:10px;padding:14px;text-align:center}
+.stat-label{font-size:10px;color:#999;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+.stat-val{font-family:'Bebas Neue',sans-serif;font-size:30px;color:#C9A227;line-height:1}
+.stat-sub{font-size:11px;color:#aaa;margin-top:3px}
+.lb-row{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:10px;padding:10px 14px;margin-bottom:6px;transition:transform .15s}
+.lb-row:hover{transform:translateX(3px)}
+.lb-rank{font-family:'Bebas Neue',sans-serif;font-size:22px;width:28px;text-align:center;color:#ccc}
+.lb-rank.r1{color:#C9A227}.lb-rank.r2{color:#9E9E9E}.lb-rank.r3{color:#CD7F32}
+.lb-name{flex:1;font-weight:600;font-size:14px;color:#222}
+.lb-bar-wrap{width:80px;height:6px;background:#eee;border-radius:3px;overflow:hidden}
+.lb-bar{height:100%;background:#C9A227;border-radius:3px;transition:width .6s}
+.lb-score{font-family:'Bebas Neue',sans-serif;font-size:22px;color:#C9A227;min-width:48px;text-align:right}
+
+/* TEAMS */
+.group-header{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:2px;color:#888;margin:14px 0 6px;display:flex;align-items:center;gap:8px}
+.group-badge{background:#C9A227;color:#0D1117;font-size:11px;font-weight:700;width:22px;height:22px;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.teams-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.team-card{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:10px;padding:9px 12px;display:flex;align-items:center;gap:10px}
+.team-flag{font-size:24px;line-height:1}
+.team-name{font-size:13px;font-weight:600;color:#222;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.team-pts{font-size:11px;color:#aaa;margin-top:1px}
+
+/* PICKS */
+.pick-section{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:10px;padding:14px;margin-bottom:12px}
+.pick-field-label{font-size:11px;font-weight:600;color:#999;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+.name-row{display:flex;gap:8px}
+.name-input{flex:1;padding:9px 12px;border:1px solid #ddd;border-radius:8px;font-family:'Barlow',sans-serif;font-size:15px;font-weight:500;outline:none;transition:border .2s}
+.name-input:focus{border-color:#C9A227}
+.load-btn{padding:9px 16px;background:#0D1117;color:#C9A227;border:none;border-radius:8px;font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:1px;cursor:pointer;white-space:nowrap}
+.load-btn:hover{background:#1a2332}
+.name-hint{font-size:11px;margin-top:5px;height:16px}
+.rank-row{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:10px;padding:9px 12px;margin-bottom:6px}
+.rank-num{font-family:'Bebas Neue',sans-serif;font-size:24px;width:28px;color:#ccc;text-align:center;flex-shrink:0}
+.rank-select{flex:1;padding:6px 8px;border:1px solid #ddd;border-radius:6px;font-family:'Barlow',sans-serif;font-size:13px;outline:none}
+.rank-badge{background:rgba(201,162,39,.12);color:#a07800;font-size:11px;font-weight:600;padding:3px 8px;border-radius:10px;white-space:nowrap;flex-shrink:0}
+.save-btn{width:100%;padding:13px;background:#C9A227;color:#0D1117;border:none;border-radius:10px;font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:2px;cursor:pointer;margin-bottom:10px;transition:all .2s}
+.save-btn:hover{background:#e0b52a;transform:translateY(-1px)}
+.toast{display:none;background:#2e7d32;color:#fff;padding:10px 14px;border-radius:10px;font-size:13px;font-weight:500;text-align:center;margin-bottom:10px}
+.all-picks-title{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:2px;color:#333;margin:16px 0 8px}
+.player-row{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:10px;padding:11px 14px;margin-bottom:6px}
+.player-name-line{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px}
+.player-name{font-weight:600;font-size:14px;color:#222}
+.player-score{font-family:'Bebas Neue',sans-serif;font-size:18px;color:#C9A227}
+.player-teams{display:flex;flex-wrap:wrap;gap:4px}
+.player-team-tag{background:#f5f5f5;border-radius:4px;padding:2px 8px;font-size:11px;color:#444}
+.no-picks-msg{color:#bbb;font-style:italic;font-size:12px}
+
+/* ROUNDS */
+.round-card{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:10px;overflow:hidden;margin-bottom:10px}
+.round-top{background:#0D1117;padding:12px 16px;display:flex;align-items:center;justify-content:space-between}
+.round-name{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:2px;color:#C9A227}
+.round-badge{font-size:11px;font-weight:600;padding:2px 10px;border-radius:10px}
+.badge-done{background:rgba(46,125,50,.25);color:#66bb6a}
+.badge-live{background:rgba(201,162,39,.2);color:#C9A227}
+.badge-upcoming{background:rgba(255,255,255,.07);color:rgba(255,255,255,.3)}
+.round-body{padding:14px}
+.round-star{display:flex;align-items:center;gap:12px;background:#fffbf0;border:1px solid rgba(201,162,39,.2);border-radius:8px;padding:10px 12px;margin-bottom:10px}
+.star-flag{font-size:30px}
+.star-info{flex:1}
+.star-label{font-size:10px;color:#aaa;text-transform:uppercase;letter-spacing:.5px}
+.star-team{font-weight:700;font-size:15px;color:#222;margin-top:2px}
+.star-pts{font-family:'Bebas Neue',sans-serif;font-size:22px;color:#C9A227}
+.star-wins{font-size:11px;color:#aaa}
+.round-summary{font-size:13px;color:#555;line-height:1.6;background:#fafafa;border-radius:8px;padding:10px 12px;margin-bottom:10px;border:1px solid #eee}
+.match-list{border-top:1px solid #f0f0f0;padding-top:10px}
+.match-list-label{font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:#bbb;margin-bottom:6px;font-weight:600}
+.match-item{display:flex;align-items:center;padding:5px 0;border-bottom:1px solid #f8f8f8;font-size:12px}
+.match-item:last-child{border-bottom:none}
+.match-teams{flex:1;color:#444;font-weight:500}
+.match-score{font-family:'Bebas Neue',sans-serif;font-size:16px;color:#222;margin:0 12px}
+.no-rounds{text-align:center;padding:40px 20px;color:#ccc;font-size:14px}
+
+/* ADMIN */
+.admin-note{background:#fffbf0;border:1px solid rgba(201,162,39,.25);border-radius:8px;padding:10px 14px;font-size:12px;color:#7a5c00;line-height:1.6;margin-bottom:12px}
+.admin-section{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:10px;padding:14px;margin-bottom:10px}
+.admin-title{font-size:13px;font-weight:600;color:#333;margin-bottom:10px}
+.field-label{font-size:11px;font-weight:600;color:#999;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px}
+.admin-select{width:100%;padding:8px 10px;border:1px solid #ddd;border-radius:8px;font-family:'Barlow',sans-serif;font-size:14px;background:#fff;margin-bottom:10px;outline:none}
+.admin-input{width:100%;padding:8px 10px;border:1px solid #ddd;border-radius:8px;font-family:'Barlow',sans-serif;font-size:14px;margin-bottom:10px;outline:none}
+.admin-textarea{width:100%;padding:8px 10px;border:1px solid #ddd;border-radius:8px;font-family:'Barlow',sans-serif;font-size:13px;resize:vertical;min-height:60px;margin-bottom:10px;outline:none}
+.match-input-block{background:#fafafa;border:1px solid #eee;border-radius:8px;padding:10px;margin-bottom:8px}
+.match-input-row{display:grid;grid-template-columns:1fr 40px 40px 12px 40px;gap:6px;align-items:center}
+.match-team-input{padding:6px 8px;border:1px solid #ddd;border-radius:6px;font-family:'Barlow',sans-serif;font-size:12px;width:100%;outline:none}
+.match-score-input{padding:6px 4px;border:1px solid #ddd;border-radius:6px;font-size:14px;font-weight:700;text-align:center;width:40px;outline:none}
+.vs-text{text-align:center;color:#ccc;font-weight:700;font-size:12px}
+.match-remove-btn{background:none;border:none;color:#ddd;cursor:pointer;font-size:14px;padding:2px;margin-top:4px}
+.match-remove-btn:hover{color:#f44336}
+.add-match-btn{background:rgba(201,162,39,.08);border:1px solid rgba(201,162,39,.3);color:#a07800;padding:6px 14px;border-radius:6px;font-family:'Barlow',sans-serif;font-size:12px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:4px}
+.add-match-btn:hover{background:rgba(201,162,39,.15)}
+.save-round-btn{width:100%;padding:11px;background:#0D1117;color:#C9A227;border:none;border-radius:8px;font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:2px;cursor:pointer;margin-top:10px}
+.save-round-btn:hover{background:#1a2332}
+.loading-overlay{text-align:center;padding:30px;color:#aaa;font-size:14px}
+</style>
+</head>
+<body>
+<div class="app">
+
+<div class="lang-bar">
+  <button class="lang-btn" id="btn-en" onclick="setLang('en')">🇬🇧 EN</button>
+  <button class="lang-btn" id="btn-pt" onclick="setLang('pt')">🇵🇹 PT</button>
+  <button class="lang-btn" id="btn-fr" onclick="setLang('fr')">🇫🇷 FR</button>
+</div>
+
+<div class="header">
+  <div class="ball-l">⚽</div>
+  <div class="logo">Amorim Top Series</div>
+  <div class="logo-sub">Fantasy League</div>
+  <div class="logo-event">🏆 FIFA World Cup 2026 · USA · Canada · Mexico</div>
+  <div id="sb-status" style="position:relative;z-index:2;margin-top:8px;font-size:11px;color:rgba(255,255,255,.3)">⏳ Connecting...</div>
+  <div class="ball-r">⚽</div>
+</div>
+
+<div class="nav" id="main-nav">
+  <button class="active" onclick="showTab('intro')">📖 <span data-t="nav_rules">Rules</span></button>
+  <button onclick="showTab('dashboard')">📊 <span data-t="nav_dash">Dashboard</span></button>
+  <button onclick="showTab('rounds')">🗓 <span data-t="nav_rounds">Rounds</span></button>
+  <button onclick="showTab('teams')">🏆 <span data-t="nav_teams">Teams</span></button>
+  <button onclick="showTab('pick')">✏️ <span data-t="nav_pick">My Picks</span></button>
+  <button onclick="showTab('admin')">⚙️ Admin</button>
+</div>
+
+<div class="content">
+
+<!-- INTRO -->
+<div id="tab-intro" class="tab active">
+  <div class="intro-hero">
+    <h1>Amorim Top Series</h1>
+    <p data-t="hero_sub">FIFA World Cup 2026 — Fantasy Prediction Game</p>
+  </div>
+  <div class="intro-dates">
+    <div class="date-card"><div class="date-val">Jun 11</div><div class="date-label" data-t="date_start">Kick-off</div></div>
+    <div class="date-card"><div class="date-val">24</div><div class="date-label" data-t="date_teams">Teams</div></div>
+    <div class="date-card"><div class="date-val">Jul 19</div><div class="date-label" data-t="date_final">Final</div></div>
+  </div>
+  <!-- EN rules -->
+  <div class="rules-block">
+    <div class="rules-header"><span class="rules-flag">🇬🇧</span><span class="rules-lang">English</span></div>
+    <div class="rules-body">
+      <div class="rule-row"><div class="rule-icon">🏅</div><div><div class="rule-title">Pick your 8 teams</div><div class="rule-desc">Each participant selects <strong>12 teams</strong> — exactly <strong>1 team per group</strong> (Groups A to L). Picks are locked once the first match kicks off.</div></div></div>
+      
+      <div class="rule-row"><div class="rule-icon">✖️</div><div><div class="rule-title">Multiplier system — rank matters!</div><div class="rule-desc">Your #1 pick (slot 1) earns <strong>×12</strong> of that team's points, slot #2 earns ×11 … down to slot #12 which earns ×1. Points accumulate from every match (Win = 3pts + goals scored, Draw = 1pt + goals).</div></div></div>
+      <table class="mult-table"><thead><tr><th>Rank</th><th>1st</th><th>2nd</th><th>3rd</th><th>4th</th><th>5th</th><th>6th</th><th>7th</th><th>8th</th><th>9th</th><th>10th</th><th>11th</th><th>12th</th></tr></thead><tbody><tr><td>Mult.</td><td>×12</td><td>×11</td><td>×10</td><td>×9</td><td>×8</td><td>×7</td><td>×6</td><td>×5</td><td>×4</td><td>×3</td><td>×2</td><td>×1</td></tr></tbody></table>
+      <div class="rule-row" style="margin-top:12px"><div class="rule-icon">🧠</div><div><div class="rule-title">Strategy tip</div><div class="rule-desc">The coefficient matters as much as the team itself. A strong team in slot #12 earns less than a decent team in slot #1. The top slots (×12, ×11, ×10) carry huge weight — pick the groups where you're most confident, and assign those groups the top ranks!</div></div></div>
+      <div class="rule-row"><div class="rule-icon">🏆</div><div><div class="rule-title">Win the league</div><div class="rule-desc">The player with the highest total score at the end of the World Cup wins the Amorim Top Series trophy!</div></div></div>
+    </div>
+  </div>
+  <!-- PT rules -->
+  <div class="rules-block">
+    <div class="rules-header"><span class="rules-flag">🇵🇹</span><span class="rules-lang">Português</span></div>
+    <div class="rules-body">
+      <div class="rule-row"><div class="rule-icon">🏅</div><div><div class="rule-title">Escolhe as tuas 8 equipas</div><div class="rule-desc">Cada participante seleciona <strong>12 equipas</strong> — exatamente <strong>1 equipa por grupo</strong> (Grupos A a L). As escolhas ficam bloqueadas após o início do primeiro jogo.</div></div></div>
+      
+      <div class="rule-row"><div class="rule-icon">✖️</div><div><div class="rule-title">Sistema de multiplicadores — a ordem importa!</div><div class="rule-desc">A tua escolha no slot #1 ganha <strong>×12</strong> dos pontos, o slot #2 ganha ×11 … até ao slot #12 que ganha ×1. Os pontos acumulam em cada jogo (Vitória = 3pts + golos marcados, Empate = 1pt + golos).</div></div></div>
+      <table class="mult-table"><thead><tr><th>Posição</th><th>1ª</th><th>2ª</th><th>3ª</th><th>4ª</th><th>5ª</th><th>6ª</th><th>7ª</th><th>8ª</th><th>9ª</th><th>10ª</th><th>11ª</th><th>12ª</th></tr></thead><tbody><tr><td>Mult.</td><td>×12</td><td>×11</td><td>×10</td><td>×9</td><td>×8</td><td>×7</td><td>×6</td><td>×5</td><td>×4</td><td>×3</td><td>×2</td><td>×1</td></tr></tbody></table>
+      <div class="rule-row" style="margin-top:12px"><div class="rule-icon">🧠</div><div><div class="rule-title">Dica estratégica</div><div class="rule-desc">O coeficiente é tão importante como a equipa! Uma equipa forte no slot #12 ganha menos do que uma equipa razoável no slot #1. Os slots do topo (×12, ×11, ×10) têm muito peso — coloca os grupos onde tens mais confiança nos primeiros slots!</div></div></div>
+      <div class="rule-row"><div class="rule-icon">🏆</div><div><div class="rule-title">Vence a liga</div><div class="rule-desc">O jogador com a pontuação mais alta no final do Mundial ganha o troféu Amorim Top Series!</div></div></div>
+    </div>
+  </div>
+  <!-- FR rules -->
+  <div class="rules-block">
+    <div class="rules-header"><span class="rules-flag">🇫🇷</span><span class="rules-lang">Français</span></div>
+    <div class="rules-body">
+      <div class="rule-row"><div class="rule-icon">🏅</div><div><div class="rule-title">Choisis tes 8 équipes</div><div class="rule-desc">Chaque participant sélectionne <strong>12 équipes</strong> — exactement <strong>1 équipe par groupe</strong> (Groupes A à L). Les picks sont bloqués dès le coup d'envoi du premier match.</div></div></div>
+      
+      <div class="rule-row"><div class="rule-icon">✖️</div><div><div class="rule-title">Système de multiplicateurs — le rang compte !</div><div class="rule-desc">Ton pick en slot #1 rapporte <strong>×12</strong> des points, le slot #2 rapporte ×11 … jusqu'au slot #12 qui rapporte ×1. Les points s'accumulent à chaque match (Victoire = 3pts + buts marqués, Nul = 1pt + buts).</div></div></div>
+      <table class="mult-table"><thead><tr><th>Rang</th><th>1er</th><th>2e</th><th>3e</th><th>4e</th><th>5e</th><th>6e</th><th>7e</th><th>8e</th><th>9e</th><th>10e</th><th>11e</th><th>12e</th></tr></thead><tbody><tr><td>Mult.</td><td>×12</td><td>×11</td><td>×10</td><td>×9</td><td>×8</td><td>×7</td><td>×6</td><td>×5</td><td>×4</td><td>×3</td><td>×2</td><td>×1</td></tr></tbody></table>
+      <div class="rule-row" style="margin-top:12px"><div class="rule-icon">🧠</div><div><div class="rule-title">Conseil stratégique</div><div class="rule-desc">Le coefficient compte autant que l'équipe ! Une équipe forte au slot #12 rapporte moins qu'une équipe correcte au slot #1. Les slots du haut (×12, ×11, ×10) ont un impact énorme — place les groupes dont tu es le plus sûr en premier !</div></div></div>
+      <div class="rule-row"><div class="rule-icon">🏆</div><div><div class="rule-title">Remporte la ligue</div><div class="rule-desc">Le joueur avec le score total le plus élevé à la fin de la Coupe du Monde remporte le trophée Amorim Top Series !</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="tab-dashboard" class="tab">
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-label" data-t="stat_players">Participants</div>
+      <div class="stat-val" id="stat-players">—</div>
+      <div class="stat-sub" data-t="stat_players_sub">players</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label" data-t="stat_top">Top Score</div>
+      <div class="stat-val" id="stat-top">—</div>
+      <div class="stat-sub" id="stat-top-name">—</div>
+    </div>
+  </div>
+  <div class="section-title" data-t="leaderboard">🏅 Leaderboard</div>
+  <div id="leaderboard"></div>
+</div>
+
+<!-- ROUNDS -->
+<div id="tab-rounds" class="tab">
+  <div class="section-title" data-t="rounds_title">🗓 Round Summary</div>
+  <div id="rounds-view"></div>
+</div>
+
+<!-- TEAMS -->
+<div id="tab-teams" class="tab">
+  <div id="groups-view"></div>
+</div>
+
+<!-- PICKS -->
+<div id="tab-pick" class="tab">
+  <div class="pick-section">
+    <div class="pick-field-label" data-t="your_name">Your name</div>
+    <div class="name-row">
+      <input type="text" class="name-input" id="name-input" list="players-list" placeholder="Type your name..." autocomplete="off" oninput="onNameType()">
+      <button class="load-btn" onclick="loadPicks()" data-t="load_btn">Load ↗</button>
+    </div>
+    <datalist id="players-list"></datalist>
+    <div class="name-hint" id="name-hint"></div>
+  </div>
+  <div id="pick-slots"></div>
+  <button class="save-btn" onclick="savePicks()" data-t="save_btn">Save My Picks ↗</button>
+  <div class="toast" id="toast" data-t="saved_toast">✅ Picks saved!</div>
+  <div class="all-picks-title" data-t="all_picks">All Participants</div>
+  <div id="all-picks"></div>
+</div>
+
+<!-- ADMIN -->
+<div id="tab-admin" class="tab">
+  <div class="section-title">⚙️ Admin</div>
+  <div class="admin-note" data-t="admin_note">Enter match results here. Points are calculated automatically: Win = 3pts + goals scored, Draw = 1pt + goals scored.</div>
+  <div class="admin-note" style="background:#e8f5e9;border-color:#a5d6a7;color:#2e7d32">
+    ⚠️ <strong>Supabase SQL update required</strong> — Run this once in your SQL Editor to support 12 picks:<br>
+    <code style="font-size:11px;display:block;margin-top:6px;background:rgba(0,0,0,.06);padding:6px 8px;border-radius:4px">
+    ALTER TABLE picks ADD COLUMN IF NOT EXISTS team9 text;<br>
+    ALTER TABLE picks ADD COLUMN IF NOT EXISTS team10 text;<br>
+    ALTER TABLE picks ADD COLUMN IF NOT EXISTS team11 text;<br>
+    ALTER TABLE picks ADD COLUMN IF NOT EXISTS team12 text;
+    </code>
+  </div>
+  <div class="admin-section">
+    <div class="admin-title" data-t="admin_round_select">Select or create a round</div>
+    <select class="admin-select" id="admin-round-sel" onchange="onAdminRoundChange()">
+      <option value="">-- Select round --</option>
+      <option value="__new__">+ New round</option>
+    </select>
+    <div id="admin-new-name-wrap" style="display:none">
+      <div class="field-label" data-t="round_name">Round name</div>
+      <input type="text" class="admin-input" id="admin-new-name" placeholder="e.g. Group Stage, Quarter-finals...">
+    </div>
+  </div>
+  <div class="admin-section" id="admin-matches-wrap" style="display:none">
+    <div class="admin-title" data-t="match_results">Match results</div>
+    <div id="match-inputs"></div>
+    <button class="add-match-btn" onclick="addMatch()">+ <span data-t="add_match">Add match</span></button>
+    <div style="margin-top:14px">
+      <div class="field-label" data-t="round_status">Status</div>
+      <select class="admin-select" id="admin-status" style="margin-bottom:10px">
+        <option value="upcoming">⏳ Upcoming</option>
+        <option value="live">🔴 Live</option>
+        <option value="done">✅ Done</option>
+      </select>
+      <div class="field-label" data-t="round_summary_label">Round summary (optional)</div>
+      <textarea class="admin-textarea" id="admin-summary" placeholder="Brief summary of this round..."></textarea>
+    </div>
+    <button class="save-round-btn" onclick="saveRound()" data-t="save_round">Save Round</button>
+  </div>
+</div>
+
+</div><!-- end content -->
+</div><!-- end app -->
+
+<script>
+// ── CONFIG ────────────────────────────────────────────────────
+const SB = 'https://zkkuyqjwjrlgdqpiretw.supabase.co';
+const KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpra3V5cWp3anJsZ2RxcGlyZXR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzMjA0NjYsImV4cCI6MjA5NTg5NjQ2Nn0.N21dwUYTfsd9VSNV3JHxZKfZUx-eoBiTbJPfNpwx3IE';
+const H = {'Content-Type':'application/json','apikey':KEY,'Authorization':'Bearer '+KEY};
+
+const TEAMS = [
+  // Group A
+  {name:'Mexico',           group:'A', pts:0, flag:'🇲🇽'},
+  {name:'South Africa',     group:'A', pts:0, flag:'🇿🇦'},
+  {name:'South Korea',      group:'A', pts:0, flag:'🇰🇷'},
+  {name:'Czechia',          group:'A', pts:0, flag:'🇨🇿'},
+  // Group B
+  {name:'Canada',           group:'B', pts:0, flag:'🇨🇦'},
+  {name:'Switzerland',      group:'B', pts:0, flag:'🇨🇭'},
+  {name:'Qatar',            group:'B', pts:0, flag:'🇶🇦'},
+  {name:'Bosnia & Herzegovina', group:'B', pts:0, flag:'🇧🇦'},
+  // Group C
+  {name:'Brazil',           group:'C', pts:0, flag:'🇧🇷'},
+  {name:'Morocco',          group:'C', pts:0, flag:'🇲🇦'},
+  {name:'Haiti',            group:'C', pts:0, flag:'🇭🇹'},
+  {name:'Scotland',         group:'C', pts:0, flag:'🏴󠁧󠁢󠁳󠁣󠁴󠁿'},
+  // Group D
+  {name:'USA',              group:'D', pts:0, flag:'🇺🇸'},
+  {name:'Paraguay',         group:'D', pts:0, flag:'🇵🇾'},
+  {name:'Australia',        group:'D', pts:0, flag:'🇦🇺'},
+  {name:'Türkiye',          group:'D', pts:0, flag:'🇹🇷'},
+  // Group E
+  {name:'Germany',          group:'E', pts:0, flag:'🇩🇪'},
+  {name:'Curaçao',          group:'E', pts:0, flag:'🇨🇼'},
+  {name:'Ivory Coast',      group:'E', pts:0, flag:'🇨🇮'},
+  {name:'Ecuador',          group:'E', pts:0, flag:'🇪🇨'},
+  // Group F
+  {name:'Netherlands',      group:'F', pts:0, flag:'🇳🇱'},
+  {name:'Japan',            group:'F', pts:0, flag:'🇯🇵'},
+  {name:'Sweden',           group:'F', pts:0, flag:'🇸🇪'},
+  {name:'Tunisia',          group:'F', pts:0, flag:'🇹🇳'},
+  // Group G
+  {name:'Belgium',          group:'G', pts:0, flag:'🇧🇪'},
+  {name:'Egypt',            group:'G', pts:0, flag:'🇪🇬'},
+  {name:'Iran',             group:'G', pts:0, flag:'🇮🇷'},
+  {name:'New Zealand',      group:'G', pts:0, flag:'🇳🇿'},
+  // Group H
+  {name:'Spain',            group:'H', pts:0, flag:'🇪🇸'},
+  {name:'Cape Verde',       group:'H', pts:0, flag:'🇨🇻'},
+  {name:'Saudi Arabia',     group:'H', pts:0, flag:'🇸🇦'},
+  {name:'Uruguay',          group:'H', pts:0, flag:'🇺🇾'},
+  // Group I
+  {name:'France',           group:'I', pts:0, flag:'🇫🇷'},
+  {name:'Senegal',          group:'I', pts:0, flag:'🇸🇳'},
+  {name:'Norway',           group:'I', pts:0, flag:'🇳🇴'},
+  {name:'Iraq',             group:'I', pts:0, flag:'🇮🇶'},
+  // Group J
+  {name:'Argentina',        group:'J', pts:0, flag:'🇦🇷'},
+  {name:'Algeria',          group:'J', pts:0, flag:'🇩🇿'},
+  {name:'Austria',          group:'J', pts:0, flag:'🇦🇹'},
+  {name:'Jordan',           group:'J', pts:0, flag:'🇯🇴'},
+  // Group K
+  {name:'Portugal',         group:'K', pts:0, flag:'🇵🇹'},
+  {name:'DR Congo',         group:'K', pts:0, flag:'🇨🇩'},
+  {name:'Uzbekistan',       group:'K', pts:0, flag:'🇺🇿'},
+  {name:'Colombia',         group:'K', pts:0, flag:'🇨🇴'},
+  // Group L
+  {name:'England',          group:'L', pts:0, flag:'🏴󠁧󠁢󠁥󠁮󠁧󠁿'},
+  {name:'Croatia',          group:'L', pts:0, flag:'🇭🇷'},
+  {name:'Ghana',            group:'L', pts:0, flag:'🇬🇭'},
+  {name:'Panama',           group:'L', pts:0, flag:'🇵🇦'},
+];
+
+const MULT = [12,11,10,9,8,7,6,5,4,3,2,1];
+
+const LANGS = {
+  en: {
+    nav_rules:'Rules', nav_dash:'Dashboard', nav_rounds:'Rounds', nav_teams:'Teams', nav_pick:'My Picks',
+    hero_sub:'FIFA World Cup 2026 — Fantasy Prediction Game',
+    date_start:'Kick-off', date_teams:'Teams', date_final:'Final',
+    stat_players:'Participants', stat_players_sub:'players', stat_top:'Top Score',
+    leaderboard:'🏅 Leaderboard', rounds_title:'🗓 Round Summary',
+    your_name:'Your name', load_btn:'Load ↗', save_btn:'Save My Picks ↗',
+    saved_toast:'✅ Picks saved!', all_picks:'All Participants',
+    admin_note:'Enter match results here. Points: Win = 3pts + goals scored, Draw = 1pt + goals scored.',
+    admin_round_select:'Select or create a round', round_name:'Round name',
+    match_results:'Match results', add_match:'Add match',
+    round_status:'Status', round_summary_label:'Round summary (optional)',
+    save_round:'Save Round', group_label:'Group',
+    no_rounds:'No rounds yet. Use Admin to enter results.',
+    star_of_round:'⭐ Team of the round', matches_label:'Matches',
+    no_picks_yet:'No picks yet',
+  },
+  pt: {
+    nav_rules:'Regras', nav_dash:'Dashboard', nav_rounds:'Rondas', nav_teams:'Equipas', nav_pick:'As Minhas',
+    hero_sub:'Mundial FIFA 2026 — Jogo de Previsões',
+    date_start:'Início', date_teams:'Equipas', date_final:'Final',
+    stat_players:'Participantes', stat_players_sub:'jogadores', stat_top:'Melhor Score',
+    leaderboard:'🏅 Classificação', rounds_title:'🗓 Resumo por Ronda',
+    your_name:'O teu nome', load_btn:'Carregar ↗', save_btn:'Guardar as Minhas Escolhas ↗',
+    saved_toast:'✅ Escolhas guardadas!', all_picks:'Todos os Participantes',
+    admin_note:'Introduz os resultados aqui. Pontos: Vitória = 3pts + golos marcados, Empate = 1pt + golos.',
+    admin_round_select:'Selecionar ou criar ronda', round_name:'Nome da ronda',
+    match_results:'Resultados', add_match:'Adicionar jogo',
+    round_status:'Estado', round_summary_label:'Resumo da ronda (opcional)',
+    save_round:'Guardar Ronda', group_label:'Grupo',
+    no_rounds:'Sem rondas ainda. Usa o Admin para introduzir resultados.',
+    star_of_round:'⭐ Equipa da ronda', matches_label:'Jogos',
+    no_picks_yet:'Sem escolhas ainda',
+  },
+  fr: {
+    nav_rules:'Règles', nav_dash:'Dashboard', nav_rounds:'Rounds', nav_teams:'Équipes', nav_pick:'Mes Picks',
+    hero_sub:'Coupe du Monde FIFA 2026 — Jeu de Pronostics',
+    date_start:'Coup d\'envoi', date_teams:'Équipes', date_final:'Finale',
+    stat_players:'Participants', stat_players_sub:'joueurs', stat_top:'Meilleur Score',
+    leaderboard:'🏅 Classement', rounds_title:'🗓 Résumé par Round',
+    your_name:'Ton nom', load_btn:'Charger ↗', save_btn:'Sauvegarder mes Picks ↗',
+    saved_toast:'✅ Picks sauvegardés !', all_picks:'Tous les participants',
+    admin_note:'Saisis les résultats ici. Points : Victoire = 3pts + buts marqués, Nul = 1pt + buts.',
+    admin_round_select:'Sélectionner ou créer un round', round_name:'Nom du round',
+    match_results:'Résultats des matchs', add_match:'Ajouter un match',
+    round_status:'Statut', round_summary_label:'Résumé du round (optionnel)',
+    save_round:'Sauvegarder le Round', group_label:'Groupe',
+    no_rounds:'Aucun round encore. Utilise Admin pour saisir les résultats.',
+    star_of_round:'⭐ Équipe du round', matches_label:'Matchs',
+    no_picks_yet:'Pas encore de picks',
+  }
+};
+
+// ── STATE ─────────────────────────────────────────────────────
+let lang = localStorage.getItem('wc_lang') || 'en';
+let allPicks = {};   // {name: [t1..t8]}
+let rounds   = [];   // [{id,name,status,summary,matches:[]}]
+let matchCount = 0;
+
+// ── SUPABASE ──────────────────────────────────────────────────
+async function sbFetch(table) {
+  try {
+    const r = await fetch(`${SB}/rest/v1/${table}?select=*`, {headers: H});
+    if (!r.ok) return [];
+    return await r.json();
+  } catch(e) { return []; }
+}
+
+async function sbUpsert(table, data) {
+  try {
+    await fetch(`${SB}/rest/v1/${table}`, {
+      method: 'POST',
+      headers: {...H, 'Prefer': 'resolution=merge-duplicates'},
+      body: JSON.stringify(data)
+    });
+  } catch(e) {}
+}
+
+async function loadData() {
+  // picks
+  const pr = await sbFetch('picks');
+  allPicks = {};
+  (pr || []).forEach(r => {
+    allPicks[r.name] = [r.team1,r.team2,r.team3,r.team4,r.team5,r.team6,r.team7,r.team8,r.team9,r.team10,r.team11,r.team12].map(x => x||'');
+  });
+  // rounds
+  const rr = await sbFetch('rounds');
+  rounds = (rr || []).map(r => ({
+    ...r,
+    matches: typeof r.matches === 'string' ? JSON.parse(r.matches || '[]') : (r.matches || [])
+  })).sort((a,b) => (a.updated_at||'') < (b.updated_at||'') ? -1 : 1);
+  // recalc team points
+  recalcPoints();
+}
+
+// ── POINTS ────────────────────────────────────────────────────
+function recalcPoints() {
+  TEAMS.forEach(t => t.pts = 0);
+  rounds.filter(r => r.status === 'done').forEach(r => {
+    (r.matches || []).forEach(m => {
+      if (!m.home || !m.away) return;
+      const ht = TEAMS.find(x => x.name === m.home);
+      const at = TEAMS.find(x => x.name === m.away);
+      if (!ht || !at) return;
+      const hs = parseInt(m.homeScore) || 0;
+      const as = parseInt(m.awayScore) || 0;
+      ht.pts += hs;
+      at.pts += as;
+      if (hs > as)      { ht.pts += 3; }
+      else if (as > hs) { at.pts += 3; }
+      else              { ht.pts += 1; at.pts += 1; }
+    });
+  });
+}
+
+function score(name) {
+  const picks = allPicks[name] || [];
+  return picks.reduce((s, team, i) => {
+    if (!team) return s;
+    const t = TEAMS.find(x => x.name === team);
+    return s + (t ? t.pts * (MULT[i] || 1) : 0);
+  }, 0);
+}
+
+function flagOf(name) {
+  const t = TEAMS.find(x => x.name === name);
+  return t ? t.flag : '';
+}
+
+// ── LANGUAGE ─────────────────────────────────────────────────
+function T(k) { return (LANGS[lang] || LANGS.en)[k] || k; }
+
+function setLang(l) {
+  lang = l;
+  localStorage.setItem('wc_lang', l);
+  ['en','pt','fr'].forEach(x => {
+    document.getElementById('btn-'+x).classList.toggle('active', x === l);
+  });
+  document.querySelectorAll('[data-t]').forEach(el => {
+    el.textContent = T(el.getAttribute('data-t'));
+  });
+}
+
+// ── TABS ──────────────────────────────────────────────────────
+function showTab(id) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  // find which nav button triggered this
+  document.querySelectorAll('.nav button').forEach(b => {
+    if (b.getAttribute('onclick') === "showTab('"+id+"')") b.classList.add('active');
+  });
+  if (id === 'dashboard') renderDashboard();
+  if (id === 'rounds')    renderRounds();
+  if (id === 'teams')     renderTeams();
+  if (id === 'pick')      renderPicks();
+}
+
+// ── DASHBOARD ─────────────────────────────────────────────────
+function renderDashboard() {
+  const names = Object.keys(allPicks).sort((a,b) => score(b) - score(a));
+  document.getElementById('stat-players').textContent = names.length || '—';
+  const top = names[0];
+  document.getElementById('stat-top').textContent = top ? score(top) : '—';
+  document.getElementById('stat-top-name').textContent = top || '—';
+  const max = top ? score(top) : 1;
+  document.getElementById('leaderboard').innerHTML = names.length
+    ? names.map((n,i) => {
+        const s = score(n);
+        const pct = Math.round(s / max * 100);
+        const rc = i===0?'r1':i===1?'r2':i===2?'r3':'';
+        return `<div class="lb-row">
+          <div class="lb-rank ${rc}">${i+1}</div>
+          <div class="lb-name">${n}</div>
+          <div class="lb-bar-wrap"><div class="lb-bar" style="width:${pct}%"></div></div>
+          <div class="lb-score">${s}</div>
+        </div>`;
+      }).join('')
+    : `<div class="loading-overlay">${T('no_picks_yet')}</div>`;
+}
+
+// ── ROUNDS ────────────────────────────────────────────────────
+function getStarTeam(r) {
+  const map = {};
+  (r.matches || []).forEach(m => {
+    if (!m.home || !m.away) return;
+    const hs = parseInt(m.homeScore)||0, as = parseInt(m.awayScore)||0;
+    const w = hs > as ? m.home : as > hs ? m.away : null;
+    if (!w) return;
+    const wt = TEAMS.find(x => x.name === w);
+    if (!wt) return;
+    if (!map[w]) map[w] = {name:w, flag:wt.flag, pts:wt.pts, wins:0};
+    map[w].wins++;
+  });
+  return Object.values(map).sort((a,b) => b.pts - a.pts)[0] || null;
+}
+
+function renderRounds() {
+  const el = document.getElementById('rounds-view');
+  if (!rounds.length) {
+    el.innerHTML = `<div class="no-rounds">${T('no_rounds')}</div>`;
+    return;
+  }
+  el.innerHTML = rounds.map(r => {
+    const badgeCls = r.status==='done'?'badge-done':r.status==='live'?'badge-live':'badge-upcoming';
+    const badgeText = r.status==='done'?'✅ Done':r.status==='live'?'🔴 Live':'⏳ Upcoming';
+    const star = getStarTeam(r);
+    const starHtml = star ? `
+      <div class="round-star">
+        <div class="star-flag">${star.flag}</div>
+        <div class="star-info">
+          <div class="star-label">${T('star_of_round')}</div>
+          <div class="star-team">${star.name}</div>
+        </div>
+        <div>
+          <div class="star-pts">${star.pts} pts</div>
+          <div class="star-wins">${star.wins} win${star.wins>1?'s':''}</div>
+        </div>
+      </div>` : '';
+    const summaryHtml = r.summary ? `<div class="round-summary">${r.summary}</div>` : '';
+    const doneMatches = (r.matches||[]).filter(m => m.home && m.away);
+    const matchesHtml = doneMatches.length ? `
+      <div class="match-list">
+        <div class="match-list-label">${T('matches_label')}</div>
+        ${doneMatches.map(m => `
+          <div class="match-item">
+            <div class="match-teams">${flagOf(m.home)} ${m.home} <span class="muted">vs</span> ${m.away} ${flagOf(m.away)}</div>
+            <div class="match-score">${m.homeScore}–${m.awayScore}</div>
+          </div>`).join('')}
+      </div>` : '';
+    return `<div class="round-card">
+      <div class="round-top">
+        <div class="round-name">${r.name}</div>
+        <span class="round-badge ${badgeCls}">${badgeText}</span>
+      </div>
+      <div class="round-body">${starHtml}${summaryHtml}${matchesHtml}</div>
+    </div>`;
+  }).join('');
+}
+
+// ── TEAMS ─────────────────────────────────────────────────────
+function renderTeams() {
+  const groups = ['A','B','C','D','E','F','G','H','I','J','K','L'];
+  document.getElementById('groups-view').innerHTML = groups.map(g => {
+    const gTeams = TEAMS.filter(t => t.group === g);
+    return `
+      <div class="group-header">
+        <div class="group-badge">${g}</div>
+        ${T('group_label')} ${g}
+      </div>
+      <div class="teams-grid">
+        ${gTeams.map(t => `
+          <div class="team-card">
+            <div class="team-flag">${t.flag}</div>
+            <div>
+              <div class="team-name">${t.name}</div>
+              <div class="team-pts">${t.pts} pts</div>
+            </div>
+          </div>`).join('')}
+      </div>`;
+  }).join('');
+}
+
+// ── PICKS ─────────────────────────────────────────────────────
+// Rule: 12 picks, free choice from all 48 teams, but each team
+// disappears from dropdowns once selected in a previous slot.
+
+function buildPickSlots() {
+  const slots = document.getElementById('pick-slots');
+  slots.innerHTML = MULT.map((m,i) => `
+    <div class="rank-row" id="row${i}" style="transition:opacity .2s,border-color .2s">
+      <div class="rank-num" id="rn${i}" style="transition:color .25s">${i+1}</div>
+      <select class="rank-select" id="slot${i}" onchange="onSlotChange(${i})">
+        <option value="">— Pick a team —</option>
+      </select>
+      <div class="rank-badge">×${m}</div>
+    </div>`).join('');
+
+  // Progress bar
+  if (!document.getElementById('pick-progress-wrap')) {
+    const wrap = document.createElement('div');
+    wrap.id = 'pick-progress-wrap';
+    wrap.style.cssText = 'margin-bottom:12px;padding:12px 14px;background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:10px';
+    wrap.innerHTML = `
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <span style="font-size:12px;font-weight:600;color:#555" id="progress-label">0 / 12</span>
+        <span style="font-size:11px;color:#aaa" id="progress-pct">0%</span>
+      </div>
+      <div style="height:6px;background:#f0f0f0;border-radius:3px;overflow:hidden">
+        <div id="progress-bar" style="height:100%;width:0%;background:linear-gradient(90deg,#C9A227,#e0b52a);border-radius:3px;transition:width .4s ease"></div>
+      </div>`;
+    slots.after(wrap);
+  }
+
+  // Validation box
+  if (!document.getElementById('pick-validation')) {
+    const div = document.createElement('div');
+    div.id = 'pick-validation';
+    div.style.cssText = 'display:none;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:500;margin-bottom:10px';
+    document.getElementById('pick-progress-wrap').after(div);
+  }
+
+  const dl = document.getElementById('players-list');
+  dl.innerHTML = Object.keys(allPicks).map(n => `<option value="${n}">`).join('');
+
+  // Build all dropdowns fresh
+  rebuildAllDropdowns(Array(12).fill(''));
+}
+
+function rebuildAllDropdowns(picks) {
+  MULT.forEach((_, i) => {
+    const sel = document.getElementById('slot'+i);
+    if (!sel) return;
+    const currentVal = picks[i] || '';
+
+    // Teams AND groups already used in slots BEFORE this one
+    const takenTeams  = new Set(picks.slice(0, i).filter(x => x));
+    const takenGroups = new Set();
+    picks.slice(0, i).forEach(name => {
+      const t = TEAMS.find(x => x.name === name);
+      if (t) takenGroups.add(t.group);
+    });
+
+    const ph = lang==='fr' ? '— Choisir une équipe —' : lang==='pt' ? '— Escolher equipa —' : '— Pick a team —';
+    sel.innerHTML = `<option value="">${ph}</option>`;
+
+    ALL_GROUPS.forEach(g => {
+      // Hide entire group if already used in a previous slot
+      if (takenGroups.has(g)) return;
+
+      const available = TEAMS.filter(t => t.group === g && !takenTeams.has(t.name));
+      if (!available.length) return;
+
+      const og = document.createElement('optgroup');
+      og.label = `Group ${g}`;
+      available.forEach(t => {
+        const opt = document.createElement('option');
+        opt.value = t.name;
+        opt.textContent = `${t.flag} ${t.name}`;
+        if (t.name === currentVal) opt.selected = true;
+        og.appendChild(opt);
+      });
+      sel.appendChild(og);
+    });
+
+    // Visual state
+    const hasVal = !!sel.value;
+    sel.style.borderColor = hasVal ? '#C9A227' : '#ddd';
+    sel.style.background  = hasVal ? '#fffbf0' : '#fff';
+    sel.style.fontWeight  = hasVal ? '600' : '400';
+    const rn = document.getElementById('rn'+i);
+    if (rn) rn.style.color = hasVal ? '#C9A227' : '#ccc';
+  });
+}
+
+function onSlotChange(changedIdx) {
+  // Collect current picks
+  const picks = MULT.map((_, i) => document.getElementById('slot'+i)?.value || '');
+
+  // When a slot changes, clear all slots AFTER it that conflict with new pick
+  if (changedIdx !== undefined) {
+    const changedVal = picks[changedIdx];
+    for (let i = changedIdx + 1; i < 12; i++) {
+      if (picks[i] === changedVal && changedVal !== '') {
+        const sel = document.getElementById('slot'+i);
+        if (sel) { sel.value = ''; picks[i] = ''; }
+      }
+    }
+  }
+
+  // Rebuild all dropdowns based on picks in PREVIOUS slots
+  rebuildAllDropdowns(picks);
+
+  // Progress
+  const filled = picks.filter(x => x);
+  const pct = Math.round(filled.length / 12 * 100);
+  const bar = document.getElementById('progress-bar');
+  const lbl = document.getElementById('progress-label');
+  const pctLbl = document.getElementById('progress-pct');
+  if (bar) {
+    bar.style.width = pct + '%';
+    bar.style.background = filled.length === 12
+      ? 'linear-gradient(90deg,#2e7d32,#43a047)'
+      : 'linear-gradient(90deg,#C9A227,#e0b52a)';
+  }
+  if (lbl) lbl.textContent = lang==='fr'
+    ? `${filled.length} / 12 équipes sélectionnées`
+    : lang==='pt' ? `${filled.length} / 12 equipas selecionadas`
+    : `${filled.length} / 12 teams selected`;
+  if (pctLbl) pctLbl.textContent = pct + '%';
+
+  // Validation
+  const vbox = document.getElementById('pick-validation');
+  if (!vbox) return;
+  if (filled.length === 12) {
+    vbox.style.display = 'block';
+    vbox.style.background = '#e8f5e9';
+    vbox.style.border = '1px solid #a5d6a7';
+    vbox.style.color = '#2e7d32';
+    vbox.textContent = lang==='fr' ? '✅ Sélection complète ! Tu peux sauvegarder.'
+      : lang==='pt' ? '✅ Seleção completa! Podes guardar.'
+      : '✅ All 12 teams selected! Ready to save.';
+  } else if (filled.length > 0) {
+    const rem = 12 - filled.length;
+    vbox.style.display = 'block';
+    vbox.style.background = '#f5f5f5';
+    vbox.style.border = '1px solid #eee';
+    vbox.style.color = '#999';
+    vbox.textContent = lang==='fr' ? `${rem} équipe(s) restante(s)`
+      : lang==='pt' ? `${rem} equipa(s) restante(s)`
+      : `${rem} team${rem>1?'s':''} remaining`;
+  } else {
+    vbox.style.display = 'none';
+  }
+}
+function renderPicks() {
+  buildPickSlots();
+  onSlotChange();
+  renderAllPicks();
+}
+
+function onNameType() {
+  const val = document.getElementById('name-input').value.trim();
+  const hint = document.getElementById('name-hint');
+  if (!val) { hint.textContent = ''; return; }
+  const exists = Object.keys(allPicks).find(k => k.toLowerCase() === val.toLowerCase());
+  if (exists) {
+    hint.style.color = '#2e7d32';
+    hint.textContent = '✅ ' + (lang==='fr' ? 'Joueur existant — clique Load' : lang==='pt' ? 'Jogador existente — clica Load' : 'Existing player — click Load');
+  } else {
+    hint.style.color = '#999';
+    hint.textContent = '✨ ' + (lang==='fr' ? 'Nouveau joueur' : lang==='pt' ? 'Novo jogador' : 'New player');
+  }
+}
+
+function loadPicks() {
+  const raw = document.getElementById('name-input').value.trim();
+  if (!raw) return;
+  const key = Object.keys(allPicks).find(k => k.toLowerCase() === raw.toLowerCase()) || raw;
+  document.getElementById('name-input').value = key;
+  const picks = allPicks[key] || [];
+  rebuildAllDropdowns(picks);
+  MULT.forEach((_,i) => { const el = document.getElementById('slot'+i); if(el && picks[i]) el.value = picks[i]; });
+  onNameType();
+  onSlotChange();
+}
+
+async function savePicks() {
+  const raw = document.getElementById('name-input').value.trim();
+  if (!raw) { alert(lang==='fr'?'Entre ton nom d\'abord !':lang==='pt'?'Introduz o teu nome primeiro!':'Enter your name first!'); return; }
+  const p = Object.keys(allPicks).find(k => k.toLowerCase() === raw.toLowerCase()) || raw;
+  document.getElementById('name-input').value = p;
+  const picks = MULT.map((_,i) => document.getElementById('slot'+i)?.value || '');
+  const filled = picks.filter(x => x);
+
+  if (filled.length < 12) {
+    alert(lang==='fr' ? 'Sélectionne 12 équipes !'
+      : lang==='pt' ? 'Seleciona 12 equipas!'
+      : 'Please select all 12 teams!');
+    return;
+  }
+  if (new Set(filled).size !== filled.length) {
+    alert(lang==='fr' ? 'Équipe en double détectée !'
+      : lang==='pt' ? 'Equipa duplicada!'
+      : 'Duplicate team detected!');
+    return;
+  }
+  // Max 1 team per group
+  const usedGroups = new Set();
+  for (const name of filled) {
+    const t = TEAMS.find(x => x.name === name);
+    if (t) {
+      if (usedGroups.has(t.group)) {
+        alert(lang==='fr' ? `Maximum 1 équipe par groupe ! Groupe ${t.group} en double.`
+          : lang==='pt' ? `Máximo 1 equipa por grupo! Grupo ${t.group} repetido.`
+          : `Max 1 team per group! Group ${t.group} appears twice.`);
+        return;
+      }
+      usedGroups.add(t.group);
+    }
+  }
+  allPicks[p] = picks;
+  await sbUpsert('picks', {name:p, team1:picks[0]||null, team2:picks[1]||null, team3:picks[2]||null, team4:picks[3]||null, team5:picks[4]||null, team6:picks[5]||null, team7:picks[6]||null, team8:picks[7]||null, team9:picks[8]||null, team10:picks[9]||null, team11:picks[10]||null, team12:picks[11]||null});
+  // rebuild datalist
+  const dl = document.getElementById('players-list');
+  dl.innerHTML = Object.keys(allPicks).map(n => `<option value="${n}">`).join('');
+  const toast = document.getElementById('toast');
+  toast.textContent = T('saved_toast');
+  toast.style.display = 'block';
+  setTimeout(() => toast.style.display = 'none', 2500);
+  renderAllPicks();
+  renderDashboard();
+}
+
+function renderAllPicks() {
+  const names = Object.keys(allPicks).sort((a,b) => a.localeCompare(b));
+  if (!names.length) {
+    document.getElementById('all-picks').innerHTML = `<div class="loading-overlay">${T('no_picks_yet')}</div>`;
+    return;
+  }
+  document.getElementById('all-picks').innerHTML = names.map(n => {
+    const picks = (allPicks[n] || []).filter(x => x);
+    const s = score(n);
+    const tags = picks.map((tm, i) => {
+      const t = TEAMS.find(x => x.name === tm);
+      return `<span class="player-team-tag">${t?t.flag:''} ${tm} <small style="opacity:.5">×${MULT[i]||1}</small></span>`;
+    }).join('');
+    return `<div class="player-row">
+      <div class="player-name-line">
+        <div class="player-name">${n}</div>
+        ${picks.length ? `<div class="player-score">${s} pts</div>` : ''}
+      </div>
+      <div class="player-teams">${tags || `<span class="no-picks-msg">${T('no_picks_yet')}</span>`}</div>
+    </div>`;
+  }).join('');
+}
+
+// ── ADMIN ─────────────────────────────────────────────────────
+function onAdminRoundChange() {
+  const val = document.getElementById('admin-round-sel').value;
+  const newWrap = document.getElementById('admin-new-name-wrap');
+  const matchWrap = document.getElementById('admin-matches-wrap');
+  if (!val) { newWrap.style.display='none'; matchWrap.style.display='none'; return; }
+  matchWrap.style.display = 'block';
+  if (val === '__new__') {
+    newWrap.style.display = 'block';
+    document.getElementById('match-inputs').innerHTML = '';
+    document.getElementById('admin-summary').value = '';
+    document.getElementById('admin-status').value = 'upcoming';
+    matchCount = 0;
+    addMatch();
+    return;
+  }
+  newWrap.style.display = 'none';
+  const r = rounds.find(x => x.id === val);
+  if (!r) return;
+  document.getElementById('admin-summary').value = r.summary || '';
+  document.getElementById('admin-status').value = r.status || 'upcoming';
+  document.getElementById('match-inputs').innerHTML = '';
+  matchCount = 0;
+  if (r.matches && r.matches.length) r.matches.forEach(m => addMatch(m));
+  else addMatch();
+}
+
+function addMatch(m) {
+  const idx = matchCount++;
+  const div = document.createElement('div');
+  div.className = 'match-input-block';
+  div.id = 'mi-'+idx;
+  div.innerHTML = `
+    <div class="match-input-row">
+      <input type="text" class="match-team-input" id="mh-${idx}" list="team-dl" placeholder="${lang==='fr'?'Domicile':lang==='pt'?'Casa':'Home'}" value="${m?m.home:''}">
+      <input type="number" class="match-score-input" id="mhs-${idx}" min="0" max="20" value="${m?m.homeScore:0}">
+      <div class="vs-text">–</div>
+      <input type="number" class="match-score-input" id="mas-${idx}" min="0" max="20" value="${m?m.awayScore:0}">
+      <input type="text" class="match-team-input" id="ma-${idx}" list="team-dl" placeholder="${lang==='fr'?'Extérieur':lang==='pt'?'Fora':'Away'}" value="${m?m.away:''}">
+    </div>
+    <div style="text-align:right;margin-top:4px">
+      <button class="match-remove-btn" onclick="document.getElementById('mi-${idx}').remove()">✕ remove</button>
+    </div>`;
+  document.getElementById('match-inputs').appendChild(div);
+}
+
+async function saveRound() {
+  const val = document.getElementById('admin-round-sel').value;
+  if (!val) return;
+  const isNew = val === '__new__';
+  const name = isNew ? document.getElementById('admin-new-name').value.trim() : (rounds.find(r=>r.id===val)||{}).name;
+  if (!name) { alert('Please enter a round name.'); return; }
+  const matches = [];
+  for (let i = 0; i < matchCount; i++) {
+    const hEl = document.getElementById('mh-'+i);
+    if (!hEl || !document.getElementById('mi-'+i)) continue;
+    matches.push({
+      home:       hEl.value.trim(),
+      away:       (document.getElementById('ma-'+i)||{value:''}).value.trim(),
+      homeScore:  parseInt((document.getElementById('mhs-'+i)||{value:0}).value)||0,
+      awayScore:  parseInt((document.getElementById('mas-'+i)||{value:0}).value)||0,
+    });
+  }
+  const summary = document.getElementById('admin-summary').value.trim();
+  const status  = document.getElementById('admin-status').value;
+  const id = isNew ? 'r'+Date.now() : val;
+  if (isNew) {
+    const sel = document.getElementById('admin-round-sel');
+    const opt = document.createElement('option');
+    opt.value = id; opt.textContent = name;
+    sel.insertBefore(opt, sel.lastElementChild);
+    sel.value = id;
+    document.getElementById('admin-new-name-wrap').style.display = 'none';
+    rounds.push({id, name, status, summary, matches});
+  } else {
+    const r = rounds.find(x => x.id === val);
+    if (r) { r.matches = matches; r.summary = summary; r.status = status; }
+  }
+  await sbUpsert('rounds', {id, name, status, summary, matches: JSON.stringify(matches)});
+  recalcPoints();
+  renderTeams();
+  renderDashboard();
+  alert(lang==='fr'?'Round sauvegardé !':lang==='pt'?'Ronda guardada!':'Round saved!');
+}
+
+// ── INIT ──────────────────────────────────────────────────────
+(async () => {
+  setLang(lang);
+  buildPickSlots();
+  renderTeams();
+
+  // Load from Supabase + show connection status
+  const sbStatus = document.getElementById('sb-status');
+  try {
+    await loadData();
+    sbStatus.textContent = '🟢 Connected — data synced';
+    sbStatus.style.color = 'rgba(100,220,130,.7)';
+    setTimeout(() => { sbStatus.style.opacity = '0'; sbStatus.style.transition = 'opacity 2s'; }, 3000);
+  } catch(e) {
+    sbStatus.textContent = '🔴 Connection error — data may not save';
+    sbStatus.style.color = 'rgba(255,100,100,.8)';
+  }
+
+  renderTeams();
+  renderDashboard();
+  renderAllPicks();
+
+  // populate admin round select
+  const sel = document.getElementById('admin-round-sel');
+  rounds.forEach(r => {
+    const opt = document.createElement('option');
+    opt.value = r.id; opt.textContent = r.name;
+    sel.insertBefore(opt, sel.lastElementChild);
+  });
+
+  // build team datalist for admin
+  const dl = document.createElement('datalist');
+  dl.id = 'team-dl';
+  TEAMS.forEach(t => { const o = document.createElement('option'); o.value = t.name; dl.appendChild(o); });
+  document.body.appendChild(dl);
+
+  // rebuild players datalist
+  const pdl = document.getElementById('players-list');
+  pdl.innerHTML = Object.keys(allPicks).map(n => `<option value="${n}">`).join('');
+})();
+</script>
+</body>
+</html>
